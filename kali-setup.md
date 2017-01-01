@@ -12,19 +12,23 @@
 * Despues del hostname agregar "persistence" para actvar la opcion de persistencia
 * Iniciar Kali linux (vol down surface / alt mac / f12,f2,backspace others)
 * Umount y cambar el format de la particion de la persistencia
-* Ejecutar los comandos:
+* Ejecutar los comandos:   
+```shell
 $ fdisk -l (ver las particiones y memorias)
 $ e2label /dev/sdb<x> persistence (ver el nombre de la particion - sdb1,sdb2,sdb3,...)
 $ mkdir -p /mnt/my_usb
 $ mount /dev/sdb3<x> /mnt/my_usb
 $ echo "/ union" > /mnt/my_usb/persistence.conf 
 $ umount /dev/sdb<x>
-* Seguir los pasos
+```
 
 # Creacion de usuario no root
+Crear y agregar el nuevo usuario al grupo de sudoers   
+```shell
 $ useradd -m <username>
 $ chsh -s /bin/bash <username>
 $ usermod -a -G sudo <username>
+```
 
 # Activar driver de sonido
 ```shell
@@ -38,3 +42,4 @@ $ systemctl --user start pulseaudio
 
 # Wireshark, ejecutarlo como non-root user
 $ setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/sbin/dumpcap
+
