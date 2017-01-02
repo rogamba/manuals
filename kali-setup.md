@@ -11,6 +11,7 @@
 * Cuando se termine de hacer la instalacion del usb, editar archivos de configuacion
 * Despues del hostname agregar "persistence" para actvar la opcion de persistencia
 * Iniciar Kali linux (vol down surface / alt mac / f12,f2,backspace others)
+* Abrir el programa Gparted
 * Umount y cambar el format de la particion de la persistencia
 * Ejecutar los comandos:   
 ```shell
@@ -38,6 +39,23 @@ $ systemctl --user start pulseaudio
 ```
 
 # Wifi
+```shell
+apt-get update
+apt-get install linux-image-$(uname -r|sed 's,[^-]-[^-]-,,') linux-headers-$(uname -r|sed 's,[^-]-[^-]-,,')
+
+wget http://http.kali.org/kali/pool/main/l/linux/linux-kbuild-4.6_4.6.4-1kali1_amd64.deb
+wget http://http.kali.org/kali/pool/main/l/linux/linux-headers-4.6.0-kali1-common_4.6.4-1kali1_amd64.deb
+wget http://http.kali.org/kali/pool/main/l/linux/linux-headers-4.6.0-kali1-amd64_4.6.4-1kali1_amd64.deb
+
+dpkg -i linux-kbuild-4.6_4.6.4-1kali1_amd64.deb
+dpkg -i linux-headers-4.6.0-kali1-common_4.6.4-1kali1_amd64.deb
+dpkg -i linux-headers-4.6.0-kali1-amd64_4.6.4-1kali1_amd64.deb
+
+apt-get install broadcom-sta-dkms
+
+modprobe -r b44 b43 b43legacy ssb brcmsmac bcma
+modprobe wl
+```
 
 
 # Wireshark, ejecutarlo como non-root user
